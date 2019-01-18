@@ -40,9 +40,10 @@ def mean(n, arr):
 def median(n, arr):
     arr = sorted(arr)
     if n%2 == 0:
-        return (arr[int(n/2)-1] + arr[int(n/2)]) / 2
+        i = n // 2
+        return (arr[i-1] + arr[i])/2
     else:
-        return arr[int(n/2)]
+        return arr[n//2]
 
 def mode_(arr):
     # Generate a table of sorted (value, frequency) pairs.
@@ -55,7 +56,7 @@ def mode_(arr):
         raise StatisticsError('no mode for empty data')
 
 def _counts(data):
-    # Generate a table of sorted (value, frequency) pairs.
+    # Generate a table of sorted (value, frequency) pairs, sorted by frequency
     table = collections.Counter(iter(data)).most_common()
     if not table:
         return table
@@ -65,11 +66,12 @@ def _counts(data):
         if table[i][1] != maxfreq:
             table = table[:i]
             break
+    table = [item[0] for item in table]
     return table
 
-print(f"Mean: {mean(N,X):.1f}")
-print(f"Median: {median(N,X):.1f}")
-print(f"Mode: {mode_(X)}")
+print(f"{mean(N,X):.1f}")
+print(f"{median(N,X):.1f}")
+print(f"{mode_(X)}")
 
 class StatisticsError(ValueError):
     pass
