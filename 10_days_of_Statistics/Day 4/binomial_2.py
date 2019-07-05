@@ -11,7 +11,8 @@ def b(x, n, p):
     """
     return combination(n, x) * (p**x) * ( (1-p) ** (n-x))
 
-boy_r, girl_r = list(map(float, input().split()))
-p = boy_r / (boy_r + girl_r)
-n = 6
-print(f"{sum([b(i, n, p) for i in range(3, n+1)]):.3f}")
+p, n = list(map(int, input().split(" ")))
+p = p/100
+
+print(f"{sum([b(i, n, p) for i in range(2+1)]):.3f}")
+print(f"{sum([b(i, n, p) for i in range(2,n+1)]):.3f}")
